@@ -7,8 +7,10 @@
 ## Todo
 
 -   [x] initialize models and dbcontext through the existing database
--   [ ] creating search method with different parameters
--   [ ] reading arguments and connect them to the search methods
+-   [x] creating search method with different parameters
+-   [x] reading arguments and connect them to the search methods
+-   [ ] making a solution to organize search methods and make it cleaner
+-   [ ] get rid of all the if statements to know which arg is related to which method
 -   [ ] edit the README.md file
 
 ## SETUP / INSTALL
