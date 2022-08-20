@@ -16,6 +16,15 @@ class Program
         Console.WriteLine(element);
     }
 
+    static void FindElementByAtomicNumber(String atomicNumber)
+    {
+        var element = _context.PeriodicElements
+            .Where(x => x.AtomicNumber == atomicNumber)
+            .FirstOrDefault();
+
+        Console.WriteLine(element);
+    }
+
     static void Main(string[] args)
     {
         /*
@@ -30,6 +39,11 @@ class Program
         if (args[0] == "symbol")
         {
             FindElementBySymbol(args[1]);
+        }
+
+        if (args[0] == "atomic-number")
+        {
+            FindElementByAtomicNumber(args[1]);
         }
     }
 }
