@@ -25,6 +25,17 @@ class Program
         PrintOutput(element);
     }
 
+    static void FindElementByElementName(String elementName)
+    {
+        elementName = char.ToUpper(elementName[0]) + elementName.Substring(1);
+        
+        var element = _context.PeriodicElements
+            .Where(x => x.Element == elementName)
+            .FirstOrDefault()!;
+        
+        PrintOutput(element);
+    }
+
     static void PrintOutput(PeriodicElement element)
     {
         var table = new ConsoleTable(
@@ -63,6 +74,11 @@ class Program
         if (args[0] == "symbol")
         {
             FindElementBySymbol(args[1]);
+        }
+
+        if (args[0] == "element")
+        {
+            FindElementByElementName(args[1]);
         }
 
         if (args[0] == "atomic-number")
