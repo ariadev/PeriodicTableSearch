@@ -1,16 +1,35 @@
-﻿using PeriodicTableSearch.Data;
+﻿using Microsoft.EntityFrameworkCore;
+using PeriodicTableSearch.Data;
 
-using var db = new PeriodicElementsDbContext();
-
-static void FindElement(PeriodicElementsDbContext? db)
+class Program
 {
-    Console.WriteLine("List of all elements:");
-    var list = db.PeriodicElements.ToList();
+    private static readonly PeriodicElementsDbContext _context = new PeriodicElementsDbContext();
     
-    foreach(var element in list)
+    static void FindElementBySymbol(String symbol)
     {
-        Console.WriteLine($"{element.AtomicNumber} | {element.Element} | {element.Symbol}");
+        symbol = char.ToUpper(symbol[0]) + symbol.Substring(1);
+
+        var element = _context.PeriodicElements
+            .Where(x => x.Symbol == symbol)
+            .FirstOrDefault();
+
+        Console.WriteLine(element);
+    }
+
+    static void Main(string[] args)
+    {
+        /*
+            getting two argument [0] => unit and [1] => value and pass it
+            to the FindElement method. 
+        */
+        if (args.Length == 0)
+        {
+            Console.WriteLine("You must enter --unit and --value");
+        }
+
+        if (args[0] == "symbol")
+        {
+            FindElementBySymbol(args[1]);
+        }
     }
 }
-
-FindElement(db);
